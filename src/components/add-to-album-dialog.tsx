@@ -12,15 +12,28 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FolderPlus } from "lucide-react";
-import {useState} from 'react'
+import { useState } from "react";
 import { addImageToAlbum } from "./action";
 
-export function AddToAlbumDialog({image}:{image: SearchResult}) {
-
+export function AddToAlbumDialog({
+  image,
+  onClose,
+}: {
+  image: SearchResult;
+  onClose: () => void;
+}) {
   const [albumName, setAlbumName] = useState("");
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(newOpenState) => {
+        setOpen(newOpenState);
+        if (!newOpenState) {
+          onClose();
+        }
+      }}
+    >
       <DialogTrigger>
         <Button variant="ghost">
           <FolderPlus className="mr-2 h-8 w-8" />
@@ -39,18 +52,25 @@ export function AddToAlbumDialog({image}:{image: SearchResult}) {
             <Label htmlFor="name" className="text-right">
               Album
             </Label>
-            <Input 
-            onChange={(e)=> setAlbumName(e.currentTarget.value)}
-            id="album-name" value={albumName} className="col-span-3" />
+            <Input
+              onChange={(e) => setAlbumName(e.currentTarget.value)}
+              id="album-name"
+              value={albumName}
+              className="col-span-3"
+            />
           </div>
         </div>
         <DialogFooter>
-          <Button 
-          onClick={async()=>{
-            setOpen(false);
-            await addImageToAlbum(image, albumName)
-          }}
-          type="submit">Add to Album</Button>
+          <Button
+            onClick={async () => {
+              onClose()
+              setOpen(false);
+              await addImageToAlbum(image, albumName);
+            }}
+            type="submit"
+          >
+            Add to Album
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

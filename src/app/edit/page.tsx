@@ -76,7 +76,7 @@ export default function EditPage({
               }}
             />
           )}
-          {transformation === "blur" && (
+          {/* {transformation === "blur" && (
             <CldImage
               alt="some image"
               src={publicId}
@@ -103,7 +103,7 @@ export default function EditPage({
               pixelate
               alt="some image"
             />
-          )}
+          )} */}
 
           {transformation === "bg-remove" && (
             <CldImage

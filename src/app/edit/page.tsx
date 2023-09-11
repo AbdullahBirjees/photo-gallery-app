@@ -1,12 +1,9 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CldImage } from "next-cloudinary";
 import { useState } from "react";
-
-// Hello
 
 export default function EditPage({
   searchParams: { publicId },
@@ -84,9 +81,11 @@ export default function EditPage({
               src={publicId}
               width="1200"
               height="1400"
-              effects={[{
-                blur: "800"
-            }]}
+              effects={[
+                {
+                  blur: "800",
+                },
+              ]}
             />
           )}
           {transformation === "grayscale" && (
@@ -94,9 +93,11 @@ export default function EditPage({
               src={publicId}
               width="1200"
               height="1400"
-              effects={[{
-                grayscale: true
-            }]}
+              effects={[
+                {
+                  grayscale: true,
+                },
+              ]}
               alt="some image"
             />
           )}
@@ -106,9 +107,11 @@ export default function EditPage({
               src={publicId}
               width="1200"
               height="1400"
-              effects={[{
-                pixelate: true
-            }]}
+              effects={[
+                {
+                  pixelate: true,
+                },
+              ]}
               alt="some image"
             />
           )}

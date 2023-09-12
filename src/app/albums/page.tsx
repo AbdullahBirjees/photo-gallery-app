@@ -1,4 +1,3 @@
-"use client"
 
 import cloudinary from "cloudinary";
 import { AlbumCard } from "./album-card";

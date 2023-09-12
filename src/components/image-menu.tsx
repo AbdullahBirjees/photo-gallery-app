@@ -1,4 +1,4 @@
-import { FolderPlus, Pencil } from "lucide-react";
+import { Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -28,9 +28,12 @@ export function ImageMenu({ image }: { image: SearchResult }) {
             <AddToAlbumDialog image={image} onClose={() => setOpen(false)} />
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <Button asChild variant="ghost"  className="cursor-pointer flex justify-start pl-5">
+            <Button
+              asChild
+              variant="ghost"
+              className="cursor-pointer flex justify-start pl-5"
+            >
               <Link
-             
                 href={`/edit?publicId=${encodeURIComponent(image.public_id)}`}
               >
                 <Pencil className="mr-2 w-4 h-4" />

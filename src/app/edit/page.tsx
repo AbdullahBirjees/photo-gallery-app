@@ -1,17 +1,16 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CldImage } from "next-cloudinary";
 import { useState } from "react";
 
-export default function EditPage({
-  searchParams: { publicId },
+const EditPage = ({
+  searchParams: { publicId, width, height },
 }: {
-  searchParams: {
-    publicId: string;
-  };
-}) {
+  searchParams: { publicId: string; width: number; height: number };
+}) => {
   const [transformation, setTransformation] = useState<
     | undefined
     | "generative-fill"
@@ -19,6 +18,7 @@ export default function EditPage({
     | "grayscale"
     | "pixelate"
     | "bg-remove"
+    | "tint"
   >();
   const [pendingPrompt, setPendingPrompt] = useState("");
   const [prompt, setPrompt] = useState("");
@@ -55,7 +55,7 @@ export default function EditPage({
           <Button onClick={() => setTransformation("pixelate")}>
             Pixelate
           </Button>
-
+          <Button onClick={() => setTransformation("tint")}>Tint</Button>
           <Button onClick={() => setTransformation("bg-remove")}>
             Remove Background
           </Button>
@@ -86,6 +86,19 @@ export default function EditPage({
                   blur: "800",
                 },
               ]}
+            />
+          )}
+          {transformation === "tint" && (
+            <CldImage
+              src={publicId}
+              width={400}
+              height={300}
+              effects={[
+                {
+                  tint: "equalize:80:blue:blueviolet",
+                },
+              ]}
+              alt="some image"
             />
           )}
           {transformation === "grayscale" && (
@@ -129,4 +142,5 @@ export default function EditPage({
       </div>
     </section>
   );
-}
+};
+export default EditPage;

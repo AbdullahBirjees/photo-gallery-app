@@ -37,7 +37,7 @@ export function AddToAlbumDialog({
       <DialogTrigger>
         <Button variant="ghost">
           <FolderPlus className="mr-2 h-8 w-8" />
-          <span >Add to Album</span>
+          <span>Add to Album</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
@@ -63,7 +63,7 @@ export function AddToAlbumDialog({
         <DialogFooter>
           <Button
             onClick={async () => {
-              onClose()
+              onClose();
               setOpen(false);
               await addImageToAlbum(image, albumName);
             }}

@@ -12,8 +12,7 @@ export function CloudinaryImage(
   props: {
     imagedata: SearchResult;
     onUnheart?: (unheartedResource: SearchResult) => void;
-    
-  } & Omit < CldImageProps, 'src'>
+  } & Omit<CldImageProps, "src">
 ) {
   const [transition, startTransition] = useTransition();
   const { imagedata, onUnheart } = props;
@@ -22,14 +21,13 @@ export function CloudinaryImage(
   );
   return (
     <div className="relative">
-      <div>
-      </div>
+      <div></div>
       <CldImage {...props} src={imagedata.public_id} />
       {isFavorited ? (
         <FullHeart
           onClick={() => {
-           onUnheart?.(imagedata);
-            setIsFavorited(false); 
+            onUnheart?.(imagedata);
+            setIsFavorited(false);
             startTransition(() => {
               setAsFavoriteAction(imagedata.public_id, false);
             });
@@ -47,8 +45,7 @@ export function CloudinaryImage(
           className="absolute top-2 left-2 hover:text-red-500 cursor-pointer"
         />
       )}
-      <ImageMenu 
-      image={imagedata}/>
+      <ImageMenu image={imagedata} />
     </div>
   );
 }
